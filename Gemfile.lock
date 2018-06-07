@@ -5,6 +5,7 @@ PATH
       chroma (~> 0.2)
       httparty (~> 0.15)
       pry (~> 0.11)
+      ssdp (~> 1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -40,6 +41,7 @@ GEM
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
     safe_yaml (1.0.4)
+    ssdp (1.1.7)
     webmock (3.4.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)

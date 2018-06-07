@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'webmock', '~> 3.4'
+  spec.add_dependency 'ssdp', '~> 1.1'
   spec.add_dependency 'pry', '~> 0.11'
   spec.add_dependency 'httparty', '~> 0.15'
   spec.add_dependency 'chroma', '~> 0.2'

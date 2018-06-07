@@ -156,10 +156,13 @@ To include rake tasks in a ruby app, create a Rakefile and put the following in 
 spec = Gem::Specification.find_by_name 'nanoleaf_ruby'
 load "#{spec.gem_dir}/lib/tasks/rake_tasks.rb"
 ```
-##### user:generate_token
-`rake 'user:generate_token['192.168.1.1:16021']'`
+##### nanoleaf:generate_token
+`rake 'nanoleaf:generate_token['192.168.1.1:16021']'`
 
 If you want to generate an auth token via rake, just enter the ip address of your nanoleaf here (or have it set in `ENV['NANOLEAF_API_TOKEN']`
+
+##### nanoleaf::autodiscover
+`rake 'nanoleaf:autodiscover` will attempt to find your nanoleaf(ves) via SSDP and print out information about them to the screen (including their IP addresses). I've had mixed luck with it showing up consistently.
 
 ## Console
 
