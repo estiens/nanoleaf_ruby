@@ -4,10 +4,6 @@ This gem is a wrapper around the Nanoleaf Open API (http://forum.nanoleaf.me/doc
 
 Rhythm commands and the ability to upload animations will be added shortly.
 
-TODO:
-  * Add multiple panel support
-  * Add panel auto-discovery
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -63,20 +59,20 @@ If a method sends back a JSON object, you'll get it under `[:data]` (for example
 `api.info` returns all the info from your panels
 
 #### power on/off
-`api.on` turns the nanoleaf panels on
+`api.on` turns the Nanoleaf panel on
 
-`api.off` turns the nanoleaf panels off
+`api.off` turns the Nanoleaf panel off
 
-`api.toggle` toggles the current power status of the nanoleaf panels
+`api.toggle` toggles the current power status of the Nanoleaf panel
 
 #### color mode
 `api.color_mode` returns the current color mode
 
 #### identify
-`api.identify` flashes your panels
+`api.identify` flashes your panel
 
 #### brightness
-`api.set_brightness(value, duration = nil)` sets the brightness of the panels. When passed a second argument it will transition to that brightness over that number of seconds.
+`api.set_brightness(value, duration = nil)` sets the brightness of the panel. When passed a second argument it will transition to that brightness over that number of seconds.
 
 `api.brightness_increment(increment = 1)` allows you to pass a positive or negative value to increment the current brightness
 
@@ -84,10 +80,10 @@ If a method sends back a JSON object, you'll get it under `[:data]` (for example
 
 `api.brightness_down(increment = 1)` pass a number to decrease the brightness by that amount, defaults to 1 without an argument
 
-`api.get_brightness` gets the current brightness level of the panels
+`api.get_brightness` gets the current brightness level of the panel
 
 #### hue
-`api.set_hue(value)` sets the hue of the panels.
+`api.set_hue(value)` sets the hue of the panel.
 
 `api.hue_increment(increment = 1)` allows you to pass a positive or negative value to increment the current hue
 
@@ -95,10 +91,10 @@ If a method sends back a JSON object, you'll get it under `[:data]` (for example
 
 `api.hue_down(increment = 1)` pass a number to decrease the hue by that amount, defaults to 1 without an argument
 
-`api.get_hue` gets the current hue level of the panels
+`api.get_hue` gets the current hue level of the panel
 
 #### color temperature
-`api.set_ct(value)` sets the ct of the panels.
+`api.set_ct(value)` sets the ct of the panel.
 
 `api.ct_increment(increment = 1)` allows you to pass a positive or negative value to increment the current ct
 
@@ -106,11 +102,11 @@ If a method sends back a JSON object, you'll get it under `[:data]` (for example
 
 `api.ct_down(increment = 1)` pass a number to decrease the ct by that amount, defaults to 1 without an argument
 
-`api.get_ct` gets the current ct level of the panels
+`api.get_ct` gets the current ct level of the panel
 
 
 #### saturation
-`api.set_ct(value)` sets the ct of the panels.
+`api.set_ct(value)` sets the ct of the panel.
 
 `api.ct_increment(increment = 1)` allows you to pass a positive or negative value to increment the current ct
 
@@ -118,11 +114,11 @@ If a method sends back a JSON object, you'll get it under `[:data]` (for example
 
 `api.ct_down(increment = 1)` pass a number to decrease the ct by that amount, defaults to 1 without an argument
 
-`api.get_ct` gets the current ct level of the panels
+`api.get_ct` gets the current ct level of the panel
 
 
 #### advanced color
-`api.get_rgb` returns the current r,g,b value of the panels
+`api.get_rgb` returns the current r,g,b value of the panel
 
 `api.set_color(string)` allows you to set a color value from a name or a hex value -- for example `set_color('red')` or `set_color('#FFF')` or `set_color('#33FF33')`
 
@@ -141,7 +137,7 @@ If a method sends back a JSON object, you'll get it under `[:data]` (for example
 
 `api.generate_auth_token` returns a new auth token if the Nanoleaf has been set into the new user mode (hold the power button for 5 seconds until the light starts blinking)
 
-note: If you are setting up the nanoleaf for the first time and you know the IP address but don't have a token, you can instantiate the API with a bogus string for the token and still run this command, however no other command will work
+note: If you are setting up the panel for the first time and you know the IP address but don't have a token, you can instantiate the API with a bogus string for the token and still run this command, however no other command will work
 
 ```ruby
 api = NanoleafRuby::Api.new(ip_address: '192.161.1.1:16021', token: 'foobar')
@@ -159,10 +155,10 @@ load "#{spec.gem_dir}/lib/tasks/rake_tasks.rb"
 ##### nanoleaf:generate_token
 `rake 'nanoleaf:generate_token['192.168.1.1:16021']'`
 
-If you want to generate an auth token via rake, just enter the ip address of your nanoleaf here (or have it set in `ENV['NANOLEAF_API_TOKEN']`
+If you want to generate an auth token via rake, just enter the ip address of your panel here (or have it set in `ENV['NANOLEAF_API_TOKEN']`
 
 ##### nanoleaf::autodiscover
-`rake 'nanoleaf:autodiscover` will attempt to find your nanoleaf(ves) via SSDP and print out information about them to the screen (including their IP addresses). I've had mixed luck with it showing up consistently.
+`rake 'nanoleaf:autodiscover` will attempt to find your panel(s) via SSDP and print out information about them to the screen (including their IP addresses). I've had mixed luck with it showing up consistently.
 
 ## Console
 
