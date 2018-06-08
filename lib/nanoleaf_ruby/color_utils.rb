@@ -9,8 +9,8 @@ module NanoleafRuby
       [values[:hue].to_i, values[:sat].to_i, values[:bright].to_i]
     end
 
-    def self.hsv_to_rgb(h, s, v)
-      color = Chroma.paint("hsv(#{h}, #{s}%, #{v}%)")
+    def self.hsv_to_rgb(hue, sat, val)
+      color = Chroma.paint("hsv(#{hue}, #{sat}%, #{val}%)")
       color.to_rgb
     end
   end

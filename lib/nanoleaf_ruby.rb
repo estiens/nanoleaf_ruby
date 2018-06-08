@@ -1,7 +1,7 @@
-require "nanoleaf_ruby/version"
-require "nanoleaf_ruby/color_utils"
-require "nanoleaf_ruby/base_requester"
-require "errors/configuration_error"
+require 'nanoleaf_ruby/version'
+require 'nanoleaf_ruby/color_utils'
+require 'nanoleaf_ruby/base_requester'
+require 'errors/configuration_error'
 
 require 'railtie' if defined?(Rails)
 
@@ -32,7 +32,7 @@ module NanoleafRuby
 
     def toggle
       response = @requester.get(url: "#{@api_url}/state/on/value")
-      on = response.dig(:raw, :body) == 'true' ? true : false
+      on = response.dig(:raw, :body) == 'true'
       params = { on: !on }
       @requester.put(url: "#{@api_url}/state", params: params)
     end
@@ -150,9 +150,9 @@ module NanoleafRuby
 
     # color_commands
     def get_rgb
-      hue = get_hue['value']
-      saturation = get_sat['value']
-      brightness = get_brightness['value']
+      hue = get_hue.dig(:data, 'value')
+      saturation = get_sat.dig(:data, 'value')
+      brightness = get_brightness.dig(:data, 'value')
       ColorUtils.hsv_to_rgb(hue, saturation, brightness)
     end
 
@@ -161,8 +161,8 @@ module NanoleafRuby
       write_color(hsb)
     end
 
-    def set_rgb(r, g, b)
-      hsb = ColorUtils.get_color("rgb(#{r},#{g},#{b})")
+    def set_rgb(red, green, blue)
+      hsb = ColorUtils.get_color("rgb(#{red},#{green},#{blue})")
       write_color(hsb)
     end
 
@@ -176,7 +176,7 @@ module NanoleafRuby
     # effects
     def effects_list
       response = @requester.get(url: "#{@api_url}/effects/effectsList")
-      effects = response[:data]
+      response[:data]
     end
 
     def choose_effect(name)
@@ -197,7 +197,7 @@ module NanoleafRuby
       response = @requester.post(url: "http://#{@nanoleaf_ip}/api/v1/new")
       if response[:success]
         puts 'Auth token successfully generated!'
-        puts "Token: #{response.dig(:data,'auth_token')}"
+        puts "Token: #{response.dig(:data, 'auth_token')}"
       elsif response[:code] == 403
         puts 'Press and hold the power button for 5-7 seconds first!'
         puts '(Light will begin flashing)'
@@ -209,8 +209,8 @@ module NanoleafRuby
     private
 
     def get_api_url
-      raise Errors::Configuration, "Nanoleaf IP address missing" unless @nanoleaf_ip
-      raise Errors::Configuration, "Nanoleaf access token missing" unless @access_token
+      raise Errors::Configuration, 'Nanoleaf IP address missing' unless @nanoleaf_ip
+      raise Errors::Configuration, 'Nanoleaf access token missing' unless @access_token
       "http://#{@nanoleaf_ip}/api/v1/#{@access_token}"
     end
   end

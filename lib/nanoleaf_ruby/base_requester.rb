@@ -23,7 +23,7 @@ module NanoleafRuby
 
     def post(url:, params: {}, headers: {})
       response = self.class.post(url, body: params.to_json, headers: headers)
-      parse_response(response: response, url: url)
+      parse_response(response: response, params: params)
     end
 
     def delete(url:, params: {})
@@ -32,6 +32,7 @@ module NanoleafRuby
 
     private
 
+    # rubocop:disable Metrics/MethodLength
     def error_lookup(error_code)
       case error_code
       when 401
@@ -46,18 +47,25 @@ module NanoleafRuby
         'Something went wrong'
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
-    def parse_response(response:, url: nil, params: nil, body: {})
+    def parse_response(response:, params: nil, body: {})
       if response.code < 299
         body[:data] = parse_json(response.body)
-        body.merge!(success: true)
+        body[:success] = true
       else
-        error = "Error #{response.code}: #{error_lookup(response.code)}"
-        raise error if @raise_errors
-        body.merge!(success: false, error: error)
+        error = write_error_message(response)
+        body[:error] = error
+        body[:success] = false
       end
-      body.merge!(code: response.code)
-      body.merge!(raw: { body: response.body, params: params } )
+      body[:code] = response.code
+      body.merge!(raw: { body: response.body, params: params })
+    end
+
+    def write_error_message(response)
+      error = "Error #{response.code}: #{error_lookup(response.code)}"
+      raise error if @raise_errors
+      error
     end
 
     def parse_json(json_string)

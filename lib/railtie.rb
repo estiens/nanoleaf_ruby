@@ -1,4 +1,5 @@
 # lib/railtie.rb
+
 require 'nanoleaf_ruby'
 require 'rails'
 
