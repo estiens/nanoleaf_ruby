@@ -2,7 +2,6 @@ require 'nanoleaf_ruby/version'
 require 'nanoleaf_ruby/color_utils'
 require 'nanoleaf_ruby/base_requester'
 require 'errors/configuration_error'
-
 require 'railtie' if defined?(Rails)
 
 module NanoleafRuby
