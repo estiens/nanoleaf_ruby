@@ -1,4 +1,5 @@
 # Nanoleaf Ruby
+[![Build Status](https://travis-ci.org/estiens/nanoleaf_ruby.svg?branch=master)](https://travis-ci.org/estiens/nanoleaf_ruby)
 
 This gem is a wrapper around the Nanoleaf Open API (http://forum.nanoleaf.me/docs/openapi). It provides a wrapper around all the main API functions and also adds some advanced color commands so you can set the color of the tiles by named colors, hex values or rgb values. It is a work in progress and will be kept up to date with the Open API.
 
