@@ -7,8 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = NanoleafRuby::VERSION
   spec.authors       = ['Eric Stiens']
   spec.email         = ['estiens@gmail.com']
-
-  spec.summary       = 'This gem provides a ruby wrappy for the Nanoleaf Open Api'
+  spec.summary       = 'This gem provides a ruby wrapper for the Nanoleaf Open Api'
   spec.homepage      = 'https://www.github.com/estiens/nanoleaf_ruby'
   spec.license       = 'MIT'
 
@@ -24,6 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rubocop', '~> 0.57'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'webmock', '~> 3.4'
   spec.add_dependency 'chroma', '~> 0.2'
